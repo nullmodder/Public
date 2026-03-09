@@ -416,6 +416,7 @@ function PlayerUtils:CameraLookAtPlayer(Player)
     local OldCameraType = Camera.CameraType
     Camera.CameraType = Enum.CameraType.Track
     Camera.CFrame = CFrame.lookAt(Camera.CFrame.Position,OtherPlayerRootPart.Position)
+    task.wait(0.01)
     Camera.CameraType = OldCameraType
   end
 end
