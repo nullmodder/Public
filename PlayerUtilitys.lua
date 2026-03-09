@@ -272,7 +272,8 @@ function PlayerUtils:LookAtPlayer(Player)
   local LocalPlayerRootPart = PlayerUtils:GetRootPart(Players.LocalPlayer)
   local OtherPlayerRootPart = PlayerUtils:GetRootPart(Player)
   if OtherPlayerRootPart and LocalPlayerRootPart then
-    LocalPlayerRootPart.CFrame = CFrame.lookAt(LocalPlayerRootPart.Position,OtherPlayerRootPart.Position)
+    local Position = Vector3.new(OtherPlayerRootPart.Position.X,0,OtherPlayerRootPart.Position.Z)
+    LocalPlayerRootPart.CFrame = CFrame.lookAt(LocalPlayerRootPart.Position,Position)
   else
     return false
   end
