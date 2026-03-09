@@ -413,7 +413,10 @@ function PlayerUtils:CameraLookAtPlayer(Player)
   local Camera = Workspace.CurrentCamera
   local OtherPlayerRootPart = PlayerUtils:GetRootPart(Player)
   if Camera and OtherPlayerRootPart then
+    local OldCameraType = Camera.CameraType
+    Camera.CameraType = Enum.CameraType.Track
     Camera.CFrame = CFrame.lookAt(Camera.CFrame.Position,OtherPlayerRootPart.Position)
+    Camera.CameraType = OldCameraType
   end
 end
 
