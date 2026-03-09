@@ -400,4 +400,34 @@ function PlayerUtils:GetClosestEnemy()
   return ClosestEnemy
 end
 
+function PlayerUtils:GetPlayerTeam(Player)
+  return Player and Player.Team or false
+end
+
+function PlayerUtils:IsEnemy(Player)
+  return GetPlayerTeam(Player) ~= GetPlayerTeam(Players.LocalPlayer)
+end
+
+function PlayerUtils:CameraLookAtPlayer(Player)
+  local Camera = Workspace.CurrentCamera
+  local OtherPlayerRootPart = PlayerUtils:GetRootPart(Player)
+  if Camera and OtherPlayerRootPart then
+    Camera.CFrame = CFrame.lookAt(Camera.CFrame.Position,OtherPlayerRootPart.Position)
+  end
+end
+
+function PlayerUtils:GetPlayerPosition(Player)
+  local OtherPlayerRootPart = PlayerUtils:GetRootPart(Player)
+  if OtherPlayerRootPart then
+    return OtherPlayerRootPart.Position
+  end
+end
+
+function PlayerUtils:GetPlayerCFrame(Player)
+  local OtherPlayerRootPart = PlayerUtils:GetRootPart(Player)
+  if OtherPlayerRootPart then
+    return OtherPlayerRootPart.CFrame
+  end
+end
+
 return PlayerUtils
