@@ -361,17 +361,17 @@ function PlayerUtils:RespawnCharacterInSamePosition()
 end
 
 function PlayerUtils:IsVisible(Player)
-  local LocalPlayerRootPart = PlayerUtils:GetRootPart(Players.LocalPlayer)
+  local Camera = Workspace.CurrentCamera
   local OtherPlayerRootPart = PlayerUtils:GetRootPart(Player)
-  if LocalPlayerRootPart and OtherPlayerRootPart then
-    local Direction = (OtherPlayerRootPart.Position - LocalPlayerRootPart.Position)
+  if Camera and OtherPlayerRootPart then
+    local Direction = (OtherPlayerRootPart.Position - Camera.CFrame.Position)
 
     local Params = RaycastParams.new()
     Params.FilterDescendantsInstances = {Players.LocalPlayer.Character}
     Params.FilterType = Enum.RaycastFilterType.Blacklist
 
 
-    local Result = Workspace:Raycast(LocalPlayerRootPart.Position,Direction,Params)
+    local Result = Workspace:Raycast(Camera.CFrame.Position,Direction,Params)
 
     if Result then
       local Character = PlayerUtils:GetCharacter(Player)
@@ -434,5 +434,7 @@ function PlayerUtils:GetPlayerCFrame(Player)
     return OtherPlayerRootPart.CFrame
   end
 end
+
+
 
 return PlayerUtils
